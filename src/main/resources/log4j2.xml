@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error" monitorInterval="3600">
+    <properties>
+        <property name="log_home">/data/akka_log/</property>
+        <property name="patternLayout">%d [%t] %-5p [%c] [%L] %m%n</property>
+        <property name="log.level.global">info</property>
+        <property name="log.level.yx">debug</property>
+    </properties>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+        </Console>
+        <RollingRandomAccessFile name="rollingFileGlobal" fileName="${log_home}/akka-sty-global.log"
+                                 filePattern="${log_home}/akka-sty-global-%d{yyyy-MM-dd}.log">
+            <PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="500MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="rollingFile" fileName="${log_home}/akka-sty-main.log"
+                                 filePattern="${log_home}/akka-sty-main-%d{yyyy-MM-dd}.log">
+            <PatternLayout charset="UTF-8" pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="500MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="${log.level.global}" name="global" includeLocation="true">
+            <AppenderRef ref="console"/>
+        </Root>
+<!--        <AsyncLogger name="com.yx" level="${log.level.yx}" additivity="false" includeLocation="true">
+            <AppenderRef ref="rollingFile"/>
+        </AsyncLogger>-->
+
+    </Loggers>
+</Configuration>

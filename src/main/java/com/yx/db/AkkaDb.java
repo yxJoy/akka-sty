@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
+ * db server
  */
 public class AkkaDb extends AbstractActor {
 

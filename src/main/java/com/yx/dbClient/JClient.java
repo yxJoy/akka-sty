@@ -11,7 +11,9 @@ import scala.concurrent.duration.Duration;
 
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * client
+ */
 public class JClient {
 
     private final ActorSystem system = ActorSystem.create("clientSystem", ConfigFactory.load("application_client"));

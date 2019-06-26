@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import scala.concurrent.Future;
 
 /**
+ * unit test
  */
 public class DbTest {
 
@@ -16,7 +17,7 @@ public class DbTest {
 
     public static final String REMOTE_ADDRESS = "127.0.0.1:2552";
 
-    public static final String TEST_KEY = "618";
+    public static final String TEST_KEY = "LOVE";
 
     static JClient J_CLIENT = new JClient(REMOTE_ADDRESS);
 
@@ -35,23 +36,5 @@ public class DbTest {
         Object o = J_CLIENT.get(TEST_KEY);
         Assert.assertEquals("JOY", o);
     }
-
-    static int INDEX = 0;
-
-    @Test
-    public void multThreadTest() {
-        for (; INDEX < 10; INDEX++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    J_CLIENT.set(TEST_KEY + "-" + INDEX, "TEST-" + INDEX);
-                }
-            }).start();
-
-        }
-        Object result = J_CLIENT.get(TEST_KEY);
-        log.info("getRemoteResult, result={}", result);
-    }
-
 
 }

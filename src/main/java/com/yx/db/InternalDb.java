@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * virtual dataBase
  */
 public class InternalDb {
 
